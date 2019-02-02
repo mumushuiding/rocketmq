@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: rocketmq-consume-demo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: lt
+Implementation-Vendor-Id: com.lt.cloud
+Build-Jdk: 1.8.0_191
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+

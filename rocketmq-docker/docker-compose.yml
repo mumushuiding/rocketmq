@@ -18,6 +18,19 @@ services:
     volumes:
       - ./data/broker/logs:/root/logs
       - ./data/broker/store:/root/store
-    command: sh mqbroker -n namesrv:9876
+      - ./data/broker/conf:/opt/rocketmq-4.4.0/conf   # 单机测试必须设置
+    links:
+     - namesrv:namesrv
+    command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
+    depends_on:
+      - namesrv
+  rocketmq-console: 
+    image: styletang/rocketmq-console-ng
+    ports:
+     - "8080:8080"
+    links:
+     - namesrv:namesrv
+    environment:
+     JAVA_OPTS: -Drocketmq.config.namesrvAddr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false # 单机测试
     depends_on:
       - namesrv
